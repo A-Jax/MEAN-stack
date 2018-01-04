@@ -1,0 +1,57 @@
+<br>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6 mr-auto">
+          <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal">
+            New post!
+          </button>
+        </div>
+      </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Make a new post</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div class="form-group">
+              <input type="text" class="form-control"[(ngModel)]="title" id="upload" placeholder="Title">
+          </div>
+          <div class="form-group">
+              <textarea class="form-control" [(ngModel)]="details" placeholder="Something to say?"></textarea>
+          </div>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Back</button>
+        <button class="btn btn-primary" (click)="postBlog((title), (details))" data-dismiss="modal">Post</button>
+        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div style="display: center" class="row">
+    <div *ngFor="let blog of blogs">
+      <div style="width: 100%;" class="col-md-3">
+        <div class="card" style="width: 15em; overflow: hidden; opacity: 0.6">
+          <div class="card-img-top">
+            {{blog.title}}
+          </div>
+          <div class="card-body">
+            {{blog.details}}
+          </div>
+          <h5 class="card-header">{{ blog.date | date: 'fullDate'}}</h5>
+          <button class="btn-block btn-danger" (click)="deleteBlog(blog._id)">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
